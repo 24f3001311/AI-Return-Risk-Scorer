@@ -1,5 +1,7 @@
 # AI Return-Risk Scorer (Razorpay Mock Project)
 
+> 🎥 **Buildathon Pitch Video:** [Watch the 5-Minute Pitch on Google Drive](PASTE_YOUR_GOOGLE_DRIVE_LINK_HERE)
+
 An end-to-end Machine Learning and Rule-Based system designed to predict and mitigate **Return-To-Origin (RTO)** and **Return-to-Vendor (RTV)** risks for e-commerce transactions. 
 
 This project simulates a production-grade scoring pipeline that dynamically routes users to a Rule Engine (for new users/cold starts) or a Machine Learning model (for returning users) to assign a risk score and an actionable decision (ALLOW, VERIFY_OTP, MANDATE_PREPAID, BLOCK).
