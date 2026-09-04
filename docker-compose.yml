@@ -1,0 +1,43 @@
+# ============================================
+# AI Return-Risk Scorer — Docker Compose
+# Orchestrates backend (FastAPI) + frontend (Vue)
+# ============================================
+
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: risk-scorer-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/reference:/app/data/reference:ro
+      - ./src/api/models:/app/src/api/models:ro
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  frontend:
+    image: node:20-alpine
+    container_name: risk-scorer-frontend
+    working_dir: /app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./src/frontend:/app
+    environment:
+      - API_TARGET=http://backend:8000
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

@@ -1,0 +1,45 @@
+# Data
+data/raw/
+data/processed/
+
+# Model artifacts
+src/api/models/*.pkl
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_meta
+
+# Node / Vue
+src/frontend/node_modules/
+src/frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker
+.docker/
+
+# Env
+.env
+.env.local
